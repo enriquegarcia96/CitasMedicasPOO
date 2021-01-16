@@ -1,35 +1,23 @@
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Doctor {
-    //Atributos
-    static int id = 0;//Autoincrement
-    private String name;
-    private String email;
+public class Doctor extends User {
+    //Atributo
     private String speciality;
 
-
-    Doctor(){
-        System.out.println("construyendo el objeto doctor");
-    }
-
-    Doctor(String name, String speciality){
+    Doctor(String name, String email){
+        super(name, email);
         System.out.println("El nombre del doctor asigando es: " + name);
-        id++;
-        this.name = name;
         this.speciality = speciality;
     }
 
-    //comportamientos
-    public void showName(){
-        System.out.println(name);
+    public String getSpeciality() {
+        return speciality;
     }
 
-    public void showId(){
-        System.out.println("ID Doctor: " + id);
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
-
 
     /**
      * metodo que va a estar añadiendo las nuevas citas disponibles (incrementa las citas)
@@ -46,7 +34,14 @@ public class Doctor {
         return availableAppointments;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "\nSpeciality: "+speciality+"\nAvailable:  "+availableAppointments.toString();
+    }
 
+    /**
+     * Clase Anidada
+     * */
     public static class AvailableAppointment{
         private int id;
         private Date date;
@@ -80,6 +75,11 @@ public class Doctor {
 
         public void setTime(String time) {
             this.time = time;
+        }
+
+        @Override
+        public String toString() {
+            return "Available Appointments \nDate: "+date+ "\nTime: "+ time;
         }
     }
 
